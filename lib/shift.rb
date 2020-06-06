@@ -1,3 +1,6 @@
+require './lib/key'
+require './lib/offset'
+
 class Shift
 
   attr_reader :a_shift, :b_shift, :c_shift, :d_shift
