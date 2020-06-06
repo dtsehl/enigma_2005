@@ -24,4 +24,13 @@ class KeyTest < Minitest::Test
     assert_equal "34", key.d_key
   end
 
+  def test_it_can_take_key_as_argument_and_assign_it
+    key = Key.new
+    key.assign_key("02715")
+    assert_equal "02", key.a_key
+    assert_equal "27", key.b_key
+    assert_equal "71", key.c_key
+    assert_equal "15", key.d_key
+  end
+
 end
