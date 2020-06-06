@@ -14,10 +14,14 @@ class KeyTest < Minitest::Test
     assert_equal 5, key.numbers.count
   end
 
-  # def test_it_can_have_A_through_D_keys
-  #   key = Key.new
-  #   key.stub(:numbers).returns([0, 1, 2, 3, 4])
-  #   assert_equal [0, 1, 2, 3, 4], key.numbers
-  # end
+  def test_it_can_assign_and_have_A_through_D_keys
+    key = Key.new
+    key.instance_variable_set("@numbers", [0, 1, 2, 3, 4])
+    key.assign
+    assert_equal "01", key.a_key
+    assert_equal "12", key.b_key
+    assert_equal "23", key.c_key
+    assert_equal "34", key.d_key
+  end
 
 end
