@@ -89,4 +89,42 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.decrypt("keder ohulw", "02715", "040895")
   end
 
+  def test_it_can_encrypt_with_key_only_and_todays_date_at_Jun_7_2020
+    skip
+    enigma = Enigma.new
+    expected =  {
+                   encryption: "nib udmcxpu",
+                   key: "02715",
+                   date: "070620"
+                }
+    assert_equal expected, enigma.encrypt("hello world", "02715")
+  end
+
+  def test_it_can_decrypt_with_key_only_and_todays_date_at_Jun_7_2020
+    skip
+    enigma = Enigma.new
+    expected_encryption =  {
+                   encryption: "nib udmcxpu",
+                   key: "02715",
+                   date: "070620"
+                }
+    expected_decryption =  {
+                   decryption: "hello world",
+                   key: "02715",
+                   date: "070620"
+                }
+    assert_equal expected_decryption, enigma.decrypt(expected_encryption[:encryption], "02715")
+  end
+
+  def test_it_can_encrypt_with_only_message_no_key
+    skip
+    enigma = Enigma.new
+    expected =  {
+                   encryption: "nib udmcxpu",
+                   key: "02715",
+                   date: "070620"
+                }
+    assert_equal expected, enigma.encrypt("hello world")
+  end
+
 end

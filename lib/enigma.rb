@@ -48,7 +48,7 @@ class Enigma
 
   def decrypt_string(message, shift)
     accum = []
-    message.downcase.chars.each_with_index do |letter, position|
+    message.chars.each_with_index do |letter, position|
       if !@letters_array.include?(letter)
         accum << letter
       elsif position == 0 || position % 4 == 0
@@ -72,6 +72,7 @@ class Enigma
     encrypted_message = {}
     shift = Shift.new
     startup(key, date, shift)
+    key = key.numbers.join if key.class == Key
     encrypted_message[:encryption] = encrypt_string(message, shift)
     encrypted_message[:key] = key
     encrypted_message[:date] = date
