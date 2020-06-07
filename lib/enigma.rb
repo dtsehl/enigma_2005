@@ -69,9 +69,13 @@ class Enigma
   end
 
   def encrypt(message, key = Key.new, date = Date.today.strftime("%d%m%y"))
+    encrypted_message = {}
     shift = Shift.new
     startup(key, date, shift)
-    encrypt_string(message, shift)
+    encrypted_message[:encryption] = encrypt_string(message, shift)
+    encrypted_message[:key] = key
+    encrypted_message[:date] = date
+    encrypted_message
   end
 
 end
