@@ -3,7 +3,6 @@ require './lib/shift'
 class Enigma
 
   def initialize
-    # @letters_hash = (("a".."z").to_a << " ").each_with_index.map{ |letter, index| [letter, index + 1] }.to_h
     @letters_array = ("a".."z").to_a << " "
   end
 

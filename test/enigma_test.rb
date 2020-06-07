@@ -8,6 +8,14 @@ class EnigmaTest < Minitest::Test
     assert_instance_of Enigma, enigma
   end
 
+  def test_it_can_start_up
+    enigma = Enigma.new
+    enigma.startup(key = Key.new, "040895", shift = Shift.new)
+    assert_equal Integer, shift.a_shift.class
+    enigma.startup("02715", "040895", shift = Shift.new)
+    assert_equal Integer, shift.b_shift.class
+  end
+
   def test_it_can_encrypt_string
     enigma = Enigma.new
     shift = Shift.new
