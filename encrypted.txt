@@ -1,0 +1,1 @@
+{:encryption=>"vzypb", :key=>"37131", :date=>"070620"}
