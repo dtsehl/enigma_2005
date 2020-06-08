@@ -11,9 +11,9 @@ class EnigmaTest < Minitest::Test
   def test_it_can_start_up
     enigma = Enigma.new
     enigma.startup(key = Key.new, "040895", shift = Shift.new)
-    assert_equal Integer, shift.a_shift.class
+    assert_equal Array, shift.numbers.class
     enigma.startup("02715", "040895", shift = Shift.new)
-    assert_equal Integer, shift.b_shift.class
+    assert_equal 3, shift.numbers.first
   end
 
   def test_it_can_encrypt_string
@@ -31,16 +31,8 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_encrypt_nonstandard_string
     enigma = Enigma.new
-    shift = Shift.new
-    key = Key.new
-    key.generate
-    key.assign_key("02715")
-    offset = Offset.new("040895")
-    offset.find_offset
-    offset.assign_offset
-    shift.combine(key, offset)
 
-    assert_equal "zoo;ci'fcaslwragj!", enigma.encrypt_string("Wow; I'm a string!", shift)
+    assert_equal "bsm;oo'qqpfwjforx!", enigma.encrypt("Wow; I'm a string!", "02715" "040895")[:encryption]
   end
 
   def test_it_can_decrypt_string
@@ -58,15 +50,8 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_decrypt_nonstandard_string
     enigma = Enigma.new
-    shift = Shift.new
-    key = Key.new
-    key.assign_key("02715")
-    offset = Offset.new("040895")
-    offset.find_offset
-    offset.assign_offset
-    shift.combine(key, offset)
 
-    assert_equal "wow; i'm a string!", enigma.decrypt_string("zoo;ci'fcaslwragj!", shift)
+    assert_equal "hello, world!", enigma.decrypt("keder, ohulw!", "02715", "040895")[:decryption]
   end
 
   def test_it_can_encrypt_message

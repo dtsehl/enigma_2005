@@ -5,16 +5,7 @@ module Shiftable
     message.downcase.chars.each_with_index do |letter, position|
       if !@letters_array.include?(letter)
         accum << letter
-      elsif position == 0 || position % 4 == 0
-        accum << @letters_array[(@letters_array.index(letter) + shift.numbers.first) % 27]
-        shift.numbers.rotate!(1)
-      elsif position == 1 || position % 4 == 1
-        accum << @letters_array[(@letters_array.index(letter) + shift.numbers.first) % 27]
-        shift.numbers.rotate!(1)
-      elsif position == 2 || position % 4 == 2
-        accum << @letters_array[(@letters_array.index(letter) + shift.numbers.first) % 27]
-        shift.numbers.rotate!(1)
-      elsif position == 3 || position % 4 == 3
+      else
         accum << @letters_array[(@letters_array.index(letter) + shift.numbers.first) % 27]
         shift.numbers.rotate!(1)
       end
@@ -27,16 +18,7 @@ module Shiftable
     message.chars.each_with_index do |letter, position|
       if !@letters_array.include?(letter)
         accum << letter
-      elsif position == 0 || position % 4 == 0
-        accum << @letters_array[(@letters_array.index(letter) - shift.numbers.first) % 27]
-        shift.numbers.rotate!(1)
-      elsif position == 1 || position % 4 == 1
-        accum << @letters_array[(@letters_array.index(letter) - shift.numbers.first) % 27]
-        shift.numbers.rotate!(1)
-      elsif position == 2 || position % 4 == 2
-        accum << @letters_array[(@letters_array.index(letter) - shift.numbers.first) % 27]
-        shift.numbers.rotate!(1)
-      elsif position == 3 || position % 4 == 3
+      else
         accum << @letters_array[(@letters_array.index(letter) - shift.numbers.first) % 27]
         shift.numbers.rotate!(1)
       end
