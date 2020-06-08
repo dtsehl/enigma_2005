@@ -1,1 +1,1 @@
-{:decryption=>"hello", :key=>"37131", :date=>"070620"}
+{:decryption=>"hello friend", :key=>"86728", :date=>"080620"}
