@@ -4,6 +4,8 @@ require './module/shiftable'
 class Enigma
   include Shiftable
 
+  attr_reader :letters_array
+
   def initialize
     @letters_array = ("a".."z").to_a << " "
   end

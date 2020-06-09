@@ -3,31 +3,48 @@ require './lib/enigma'
 
 class EnigmaTest < Minitest::Test
 
-  def test_it_exists
+  def test_it_initializes_with_alphabet
     enigma = Enigma.new
-    assert_instance_of Enigma, enigma
+    assert_equal ("a".."z").to_a << " ", enigma.letters_array
+  end
+
+  def test_it_can_get_todays_date_jun_8_2020
+    enigma = Enigma.new
+    assert_equal "080620", enigma.todays_date
+  end
+
+  def test_it_can_encrypt_string
+    enigma = Enigma.new
+    shift = Shift.new("040895", "02715")
+    assert_equal "keder ohulw!", enigma.encrypt_string("hello world!", shift)
   end
 
   def test_it_can_encrypt
     enigma = Enigma.new
     expected = {
-                  encryption: "keder ohulw",
+                  encryption: "keder ohulw!",
                   key: "02715",
                   date: "040895"
                 }
 
-    assert_equal expected, enigma.encrypt("hello world", "02715", "040895")
+    assert_equal expected, enigma.encrypt("hello world!", "02715", "040895")
+  end
+
+  def test_it_can_decrypt_string
+    enigma = Enigma.new
+    shift = Shift.new("040895", "02715")
+    assert_equal "hello world!", enigma.decrypt_string("keder ohulw!", shift)
   end
 
   def test_it_can_decrypt
     enigma = Enigma.new
     expected = {
-                  decryption: "hello world",
+                  decryption: "hello world!",
                   key: "02715",
                   date: "040895"
                 }
 
-    assert_equal expected, enigma.decrypt("keder ohulw", "02715", "040895")
+    assert_equal expected, enigma.decrypt("keder ohulw!", "02715", "040895")
   end
 
   # def test_it_can_encrypt_nonstandard_string
