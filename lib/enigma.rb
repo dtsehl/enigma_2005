@@ -1,5 +1,6 @@
 require './lib/shift'
 require './module/shiftable'
+require 'date'
 
 class Enigma
   include Shiftable
