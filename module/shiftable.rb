@@ -1,29 +1,33 @@
 module Shiftable
 
   def encrypt_string(message, shift)
-    accum = []
-    message.downcase.chars.each_with_index do |letter, position|
-      if !@letters_array.include?(letter)
-        accum << letter
+    message.downcase.chars.reduce([]) do |ary, letter|
+      if !@letters_hash.keys.include?(letter)
+        ary << letter
+      elsif (@letters_hash[letter] + shift.final_shift.first) % 27 == 0
+        ary << letter
+        shift.final_shift.rotate!(1)
       else
-        accum << @letters_array[(@letters_array.index(letter) + shift.final_shift.first) % 27]
+        ary << @letters_hash.key((@letters_hash[letter[0]] + shift.final_shift.first) % 27)
         shift.final_shift.rotate!(1)
       end
-    end
-    accum.join
+      ary
+    end.join
   end
 
   def decrypt_string(message, shift)
-    accum = []
-    message.chars.each_with_index do |letter, position|
-      if !@letters_array.include?(letter)
-        accum << letter
+    message.chars.reduce([]) do |ary, letter|
+      if !@letters_hash.keys.include?(letter)
+        ary << letter
+      elsif (@letters_hash[letter] - shift.final_shift.first) % 27 == 0
+        ary << letter
+        shift.final_shift.rotate!(1)
       else
-        accum << @letters_array[(@letters_array.index(letter) - shift.final_shift.first) % 27]
+        ary << @letters_hash.key((@letters_hash[letter] - shift.final_shift.first) % 27)
         shift.final_shift.rotate!(1)
       end
-    end
-    accum.join
+      ary
+    end.join
   end
 
 end

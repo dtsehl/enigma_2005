@@ -5,10 +5,10 @@ require 'date'
 class Enigma
   include Shiftable
 
-  attr_reader :letters_array
+  attr_reader :letters_hash
 
   def initialize
-    @letters_array = ("a".."z").to_a << " "
+    @letters_hash = (("a".."z").to_a << " ").each_with_index.map{ |letter, index| [letter, index + 1] }.to_h
   end
 
   def todays_date
