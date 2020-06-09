@@ -30,18 +30,6 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.encrypt("hello world!", "02715", "040895")
   end
 
-  def test_it_can_encrypt_with_only_message
-    skip
-    enigma = Enigma.new
-    expected = {
-                  encryption: "keder ohulw!",
-                  key: "02715",
-                  date: "040895"
-                }
-
-    assert_equal expected, enigma.encrypt("hello world!")
-  end
-
   def test_it_can_decrypt_string
     enigma = Enigma.new
     shift = Shift.new("040895", "02715")
