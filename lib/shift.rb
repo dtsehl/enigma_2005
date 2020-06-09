@@ -16,7 +16,7 @@ class Shift
       keys_to_array(keys)
     end
     @offsets = create_offset(date)
-    generate_temp_shifts(keys)
+    generate_temp_shifts(@keys)
     @final_shift.map.with_index do |shift, shift_index|
       @final_shift[shift_index] += offsets[shift_index].to_i
     end
