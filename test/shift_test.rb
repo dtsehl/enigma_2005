@@ -4,41 +4,37 @@ require './lib/shift'
 class ShiftTest < Minitest::Test
 
   def test_it_exists
-    shift = Shift.new
+    shift = Shift.new("040895", "02715")
     assert_instance_of Shift, shift
   end
 
-  def test_it_can_combine_key_and_offset
-    shift = Shift.new
-    key = Key.new
-    key.instance_variable_set("@numbers", [0, 1, 2, 3, 4])
-    key.assign_key
-    offset = Offset.new("103030")
-    offset.find_offset
-    offset.assign_offset
-
-    shift.combine(key, offset)
-
-    assert_equal 1, shift.a_shift
-    assert_equal 21, shift.b_shift
-    assert_equal 23, shift.c_shift
-    assert_equal 34, shift.d_shift
+  def test_it_can_generate_keys
+    shift = Shift.new("040895")
+    assert_equal 5, shift.keys.count
   end
 
-  def test_it_can_combine_key_and_offset_with_given_key
-    shift = Shift.new
-    key = Key.new
-    key.assign_key("02715")
-    offset = Offset.new("040895")
-    offset.find_offset
-    offset.assign_offset
+  def test_it_can_create_offsets
+    shift = Shift.new("040895", "02715")
+    assert_equal "1025", shift.create_offset("040895")
+  end
 
-    shift.combine(key, offset)
+  def test_it_can_square_a_date
+    shift = Shift.new("040895", "02715")
+    assert_equal 1672401025, shift.square("040895")
+  end
 
-    assert_equal 3, shift.a_shift
-    assert_equal 27, shift.b_shift
-    assert_equal 73, shift.c_shift
-    assert_equal 20, shift.d_shift
+  def test_it_can_get_last_4_digits_of_date
+    shift = Shift.new("040895", "02715")
+    assert_equal "0895", shift.last_four("040895")
+  end
+
+  def test_it_can_make_final_shift
+    shift = Shift.new("040895", "02715")
+
+    assert_equal 3, shift.final_shift[0]
+    assert_equal 27, shift.final_shift[1]
+    assert_equal 73, shift.final_shift[2]
+    assert_equal 20, shift.final_shift[3]
   end
 
 end
