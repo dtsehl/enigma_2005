@@ -1,6 +1,6 @@
-#Enigma Project for Week 6 of Mod 1
+# Enigma Project for Week 6 of Mod 1
 
-##Explanation
+## Explanation
 I worked on a system of "red-green-refactor" with this project. I first wanted to get all the methods to pass per the interaction patterns listed, then refactor to see if I could improve my code.
 
 I believe this refactoring was very helpful and allowed me to simplify my code substantially. In this process I was able to add a module and delete 2 extraneous classes and a module that went along with them, plus any associated tests. I was able to use better enumerators and methods and implement a hash where I thought it relevant.
