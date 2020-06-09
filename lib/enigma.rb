@@ -18,7 +18,7 @@ class Enigma
     encrypted_message = {}
     shift = Shift.new(date, key)
     encrypted_message[:encryption] = encrypt_string(message, shift)
-    encrypted_message[:key] = key
+    encrypted_message[:key] = shift.keys.join
     encrypted_message[:date] = date
     encrypted_message
   end
@@ -27,7 +27,7 @@ class Enigma
     decrypted_message = {}
     shift = Shift.new(date, key)
     decrypted_message[:decryption] = decrypt_string(message, shift)
-    decrypted_message[:key] = key
+    decrypted_message[:key] = shift.keys.join
     decrypted_message[:date] = date
     decrypted_message
   end
